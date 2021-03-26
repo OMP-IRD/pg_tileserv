@@ -21,10 +21,11 @@ LABEL original_developer="Crunchy Data" \
 	org.opencontainers.image.vendor="Crunchy Data" \
 	os.version="3.12"
 
-RUN apk --no-cache add ca-certificates && mkdir /app
+RUN apk --no-cache add ca-certificates postgresql-client && mkdir /app
 WORKDIR /app/
 COPY --from=0 /app/pg_tileserv /app/
 COPY --from=0 /app/assets /app/assets
+COPY --chown=1001 wait-for-db.sh /
 
 VOLUME ["/config"]
 
