@@ -1,5 +1,9 @@
 # Requires to build before, locally, this image (not provided on pramsey dockerhub repo. It's only used from transitiory purpose anyway
 FROM pramsey/pg_tileserv:latest-alpine
 
+# Install psql, needed for wait-for-db
+USER root
+RUN apk --no-cache add postgresql-client
+USER 1001
 COPY ./config /config/
 COPY --chown=1001 ./wait-for-db.sh /

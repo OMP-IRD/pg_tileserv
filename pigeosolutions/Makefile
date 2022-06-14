@@ -1,4 +1,4 @@
-TAG=latest-alpine
+TAG=latest
 IMAGE=pg_tileserv
 
 all: docker-build docker-push
